@@ -8,7 +8,7 @@
 
 from collections import defaultdict
 
-def group_anagrams(strs: list[str]):
+def group_anagrams(strs: list[str]) -> list[list]:
     anagrams_dict: dict[str, list] = defaultdict(list)
 
     result = [] # Will store anagrams
