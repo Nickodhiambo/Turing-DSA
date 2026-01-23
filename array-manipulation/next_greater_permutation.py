@@ -30,7 +30,7 @@ def next_greater_permutation(arr: list[int]) -> list[int]:
     return arr
 
 if __name__ == '__main__':
-    print(next_greater_permutation([1,2,3]))
+    print(next_greater_permutation([1,3,2]))
     print(next_greater_permutation([1,3,5,2,4]))
     print(next_greater_permutation([1,3,5,4,2]))
 
