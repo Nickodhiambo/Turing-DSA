@@ -42,8 +42,6 @@ class LRUCache:
         # Removes a node from list
         node.next.prev = node.prev
         node.prev.next = node.next
-        node.prev = None
-        node.next = None
 
     # Main cache operations
     def get(self, key) -> int:
@@ -78,8 +76,10 @@ class LRUCache:
     # Function to display the current state of the cache
     def __str__(self):
         items = []
-        for item in self._cache.values():
-            items.append(str(item))
+        node = self.head.next
+        while node != self.tail:
+            items.append(str(node))
+            node = node.next
         return '{' + ', '.join(items) + '}'
 
 if __name__ == '__main__':
