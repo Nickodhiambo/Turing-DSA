@@ -39,3 +39,5 @@ def minimum_transmitters(houses: list[int], k: int) -> int:
 if __name__ == '__main__':
     print(minimum_transmitters([1,3,5,7,11], 3))
     print(minimum_transmitters([1,2,3,5,9], 1))
+    print(minimum_transmitters([1,1,1,2,2,3], 0))
+    print(minimum_transmitters([1, 100, 1000], 10))
