@@ -19,18 +19,20 @@ def almost_sorted(arr: list[int]):
 
     # Determine places where the two arrays differ
     diff = [i for i in range(len(arr)) if arr[i] != sorted_arr[i]]
+    # Array already sorted
+    if not diff:
+        print('Yes')
+        return
 
-    # If diff lengtg is exactly 2, array should be sorted by swapping
+    # If diff length is exactly 2, array should be sorted by swapping
     if len(diff) == 2:
         l, r = diff[0], diff[1]
-        arr[l], arr[r] = arr[r], arr[l]
         print('Yes')
         print(f'swap {l+1} {r+1}')
         return
 
     l, r = diff[0], diff[-1]
     if arr[l:r+1][::-1] == sorted_arr[l:r+1]:
-        arr[l:r+1][::-1]
         print('Yes')
         print(f'reverse {l+1} {r+1}')
         return
@@ -41,3 +43,4 @@ if __name__ == '__main__':
     print(almost_sorted([1,4,3,2,5]))
     print(almost_sorted([1,2,6,5,4,3,7]))
     print(almost_sorted([1,4,2,5,3,6]))
+    print(almost_sorted([1,2,3,4,5]))
