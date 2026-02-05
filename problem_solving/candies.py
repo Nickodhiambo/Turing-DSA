@@ -30,15 +30,17 @@ def minimum_candies(m: int, w: int, p: int, n: int) -> int:
         if candies >= p and candies < n:
             # buys is number of resource units we can afford currently
             buys = candies // p
-            candies += candies % p
+            candies -= buys * p
 
             if m > w: # Increase worker units
                 w_add = (m - w + 1) // 2
+                w += w_add
                 buys -= w_add
                 # If we can still buy, increase machines
                 m += buys
             else: # Increase machine units
                 m_add = (w - m + 1) // 2
+                m += m_add
                 buys -= m_add
                 w += buys
     return passes
