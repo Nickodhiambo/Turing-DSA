@@ -24,31 +24,34 @@ def rotate_anticlockwise_n(matrix: list[list[int]], n: int) -> list[list[int]]:
     for _ in range(n):
         # Get the position of outermost layer
         top, left, bottom, right = 0, 0, rows-1, cols-1
-
-        # Edge case: Preserve value for 0,0 because we erase it when we move top row
-        top_left_value = matrix[top][left]
-
-        # Rotate top row
-        for col in range(1, right+1):
-            matrix[top][col-1] = matrix[top][col]
         
-        # Rotate right col
-        for row in range(1, bottom+1):
-            matrix[row-1][right] = matrix[row][right]
+        # Rotate each layer, starting from outer
+        while left < right and top < bottom:
 
-        # Rotate bottom row
-        for col in range(right-1, left-1, -1):
-            matrix[bottom][col+1] = matrix[bottom][col]
+            # Edge case: Preserve value for 0,0 because we erase it when we move top row
+            top_left_value = matrix[top][left]
 
-        # Rotate left col
-        for row in range(bottom-1, top-1, -1):
-            matrix[row+1][left] = matrix[row][left]
+            # Rotate top row
+            for col in range(1, right+1):
+                matrix[top][col-1] = matrix[top][col]
+        
+            # Rotate right col
+            for row in range(1, bottom+1):
+                matrix[row-1][right] = matrix[row][right]
 
-        # Replace value at [1][0] with the preserved value
-        matrix[top+1][left] = top_left_value
+            # Rotate bottom row
+            for col in range(right-1, left-1, -1):
+                matrix[bottom][col+1] = matrix[bottom][col]
 
-        # Move to inner layer
-        top, left, bottom, right = top+1, left+1, bottom-1, right-1
+            # Rotate left col
+            for row in range(bottom-1, top-1, -1):
+                matrix[row+1][left] = matrix[row][left]
+
+            # Replace value at [1][0] with the preserved value
+            matrix[top+1][left] = top_left_value
+
+            # Move to inner layer
+            top, left, bottom, right = top+1, left+1, bottom-1, right-1
     # Since rotation was in place, return input matrix
     return matrix
 
