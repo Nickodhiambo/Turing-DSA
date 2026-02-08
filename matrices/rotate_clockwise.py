@@ -26,25 +26,29 @@ def rotate_clockwise_n(matrix: list[list[int]], n: int) -> list[list[int]]:
         top, left, bottom, right = 0, 0, rows-1, cols-1
 
         # Preserve top rightmost value so we recover it
-        top_rightmost = matrix[0][cols-1]
+        top_rightmost = matrix[top][right]
+        bottom_rightmost = matrix[bottom][right]
+        bottom_leftmost = matrix[bottom][left]
 
         # Rotate top row
         for col in range(right-1, left-1, -1):
-            matrix[top][col+1] = matrix[0][col]
-
-        # Rotate bottom row
-        for col in range(1, right):
-            matrix[bottom][col-1] = matrix[bottom][col]
-
-        # Rotate left col
-        for row in range(1, bottom):
-            matrix[row-1][left] = matrix[row][left]
+            matrix[top][col+1] = matrix[top][col]
 
         # Rotate right col
         for row in range(bottom-1, top-1, -1):
             matrix[row+1][right] = matrix[row][right]
 
-        matrix[1][right] = top_rightmost
+        # Rotate bottom row
+        for col in range(1, right+1):
+            matrix[bottom][col-1] = matrix[bottom][col]
+
+        # Rotate left col
+        for row in range(1, bottom+1):
+            matrix[row-1][left] = matrix[row][left]
+
+        matrix[top+1][right] = top_rightmost
+        matrix[bottom][right-1] = bottom_rightmost
+        matrix[bottom-1][left] = bottom_leftmost
 
         # Move to inner layers
         top += 1

@@ -26,14 +26,14 @@ def rotate_anticlockwise_n(matrix: list[list[int]], n: int) -> list[list[int]]:
         top, left, bottom, right = 0, 0, rows-1, cols-1
 
         # Edge case: Preserve value for 0,0 because we erase it when we move top row
-        top_left_value = matrix[0][0]
+        top_left_value = matrix[top][left]
 
         # Rotate top row
-        for col in range(1, cols):
+        for col in range(1, right+1):
             matrix[top][col-1] = matrix[top][col]
         
         # Rotate right col
-        for row in range(1, rows):
+        for row in range(1, bottom+1):
             matrix[row-1][right] = matrix[row][right]
 
         # Rotate bottom row
@@ -45,7 +45,7 @@ def rotate_anticlockwise_n(matrix: list[list[int]], n: int) -> list[list[int]]:
             matrix[row+1][left] = matrix[row][left]
 
         # Replace value at [1][0] with the preserved value
-        matrix[1][0] = top_left_value
+        matrix[top+1][left] = top_left_value
 
         # Move to inner layer
         top, left, bottom, right = top+1, left+1, bottom-1, right-1
@@ -59,4 +59,4 @@ if __name__ == '__main__':
             [4,5,6],
             [7,8,9]
             ]
-    print(rotate_anticlockwise_n(matrix, 2))
+    print(rotate_anticlockwise_n(matrix,1))
