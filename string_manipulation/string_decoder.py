@@ -15,7 +15,7 @@ case
 
 def decode_cypher_text(cypherText: str, key: int) -> str:
     """
-    Helper text that takes key and decodes cypher
+    Helper function that takes key and decodes cypher
     """
     if key == 0:
         return cypherText
