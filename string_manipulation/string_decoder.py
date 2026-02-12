@@ -35,6 +35,7 @@ def decoder(cypherText: str, plainText: str) -> str:
     # been shifted by a consistent key
 
     keys = []
+    key = 0
 
     words = cypherText.split(' ')
     for word in words:
@@ -46,9 +47,10 @@ def decoder(cypherText: str, plainText: str) -> str:
             for char1, char2 in zip(word, plainText):
                 shift = (ord(char1) - ord(char2)) % 26
                 keys.append(shift)
-                if len(set(keys)) != 1:
-                    break
-    key = keys[0] if keys else 0
+            if len(set(keys)) == 1:
+                key += keys[0]
+                break
+    print(key)
 
     # Now use key to decode string
     decoded_str = decode_cypher_text(cypherText, key)
@@ -56,7 +58,7 @@ def decoder(cypherText: str, plainText: str) -> str:
 
 if __name__ == '__main__':
     print(decoder('Khoor Zruog', 'Hello'))
-    print(decoder('Cdhvdu Flskhu', 'Caesar'))
+    print(decoder('Zxbpxo qbuq', 'Caesar'))
     print(decoder('Mjqqt Btwqi', 'Hello'))
     print(decoder('Khoor, Zruog!', 'World'))
     print(decoder('Khoor Zruog', 'Python'))
